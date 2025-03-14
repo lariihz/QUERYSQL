@@ -1,0 +1,746 @@
+create database tarde_bd_afiliados;
+use tarde_bd_afiliados;
+
+go
+create table Dividas (
+	idDivida int IDENTITY(1, 1) primary key,
+	valorDividas float,
+	validade date,
+	juros float,
+	credor varchar(50),
+	fiador varchar(50),
+	tipoDeDivida varchar(50),
+	descricaoDividas varchar(150)
+);
+
+create table Receitas(
+	idReceita int IDENTITY(1, 1) primary key,
+	dataReceitas date,
+	valorReceitas float,
+	fonte varchar(50),
+	IRPJ float,
+	descricaoReceitas varchar(150)
+);
+
+create table Transacoes (
+	idTransacao int IDENTITY(1, 1) primary key,
+	dataTransacoes date,
+	valorTransacoes float,
+	destinatarioTransacoes varchar(50),
+	remetenteTransacoes varchar(50),
+	descricaoTransacoes varchar(150)
+);
+
+create table Despesas(
+	idDespesa int IDENTITY(1, 1) primary key,
+	dataDespesas date,
+	valorDespesas float,
+	destinatarioDespesas varchar(50),
+	remetenteDespesas varchar(50),
+	descricaoDespesas varchar(150),
+
+);
+
+create table ContratosFinanceiros(
+	idContratoFinanceiro int IDENTITY(1, 1) primary key,
+	inicioDeContrato date,
+	encerramentoDeContrato date,
+	associados varchar(50),
+	descricaoContratos varchar(150),
+);
+
+go
+
+insert into Dividas(valorDividas, validade, juros, credor, fiador, tipoDeDivida, descricaoDividas)
+values ( 4000000.00, '2025-08-13', 300000.00, 'Banco Central', 'Walter Sarney', 'Empr�stimo', 'Empr�stimo com o objetivo de investir em infraestruturas.'),
+( 2500000.00, '2026-05-20', 150000.00, 'Banco do Brasil', 'Jos� da Silva', 'Empr�stimo', 'Empr�stimo com o objetivo de financiar a expans�o das divis�es de base e melhorar a infraestrutura de treinamento.'),
+( 3500000.00, '2025-12-01', 200000.00, 'Ita� Unibanco', 'Ana Paula Souza', 'Empr�stimo', 'Empr�stimo para moderniza��o das instala��es dos est�dios e centros de treinamento.'),
+( 5000000.00, '2027-02-15', 250000.00, 'Caixa Econ�mica Federal', 'Carlos Henrique Silva', 'Empr�stimo', 'Empr�stimo para reformas em campos e constru��o de novas academias de base.'),
+( 4000000.00, '2026-08-30', 180000.00, 'Santander', 'Fernanda Oliveira', 'Empr�stimo', 'Empr�stimo destinado ao financiamento de eventos internacionais e viagens da sele��o brasileira.'),
+( 3000000.00, '2025-11-20', 160000.00, 'Bradesco', 'Ricardo Fernandes', 'Empr�stimo', 'Empr�stimo para a constru��o de novas instala��es e estrutura para treinamentos da sele��o feminina.'),
+( 4500000.00, '2026-06-05', 210000.00, 'Banco Safra', 'Eduardo Pereira', 'Empr�stimo', 'Empr�stimo para constru��o e melhorias de centros de treinamento em diversas regi�es do Brasil.'),
+( 6000000.00, '2027-09-10', 280000.00, 'Banco de Bras�lia', 'Luiza Mendes', 'Empr�stimo', 'Empr�stimo para financiar a Copa do Brasil e outras competi��es nacionais.'),
+( 5500000.00, '2025-10-15', 220000.00, 'Banco do Nordeste', 'Gustavo Lima', 'Empr�stimo', 'Empr�stimo para apoio ao futebol nas regi�es Norte e Nordeste do Brasil.'),
+( 7000000.00, '2027-03-22', 320000.00, 'HSBC Brasil', 'Juliana Costa', 'Empr�stimo', 'Empr�stimo para a moderniza��o do futebol brasileiro e apoio ao futebol de base.'),
+( 8000000.00, '2026-01-10', 350000.00, 'BTG Pactual', 'Marcelo Ara�jo', 'Empr�stimo', 'Empr�stimo para implementa��o de programas de responsabilidade social ligados ao futebol.'),
+( 6500000.00, '2026-11-15', 290000.00, 'Banco Votorantim', 'Simone Ribeiro', 'Empr�stimo', 'Empr�stimo para investimento em novas tecnologias para treinamento e an�lise de desempenho.'),
+( 4000000.00, '2025-12-25', 180000.00, 'Banco da Amaz�nia', 'Felipe Carvalho', 'Empr�stimo', 'Empr�stimo para a expans�o do futebol feminino e apoio a atletas de base.'),
+( 3000000.00, '2025-09-30', 170000.00, 'Banco Rural', 'Maria Clara Ferreira', 'Empr�stimo', 'Empr�stimo destinado ao desenvolvimento do futebol nas categorias de base e futebol de sal�o.'),
+( 2000000.00, '2026-07-05', 140000.00, 'Banco do Estado de S�o Paulo', 'Thiago Martins', 'Empr�stimo', 'Empr�stimo para melhorias no gerenciamento de torneios e apoio ao futebol local.');
+
+insert into Receitas(dataReceitas, valorReceitas, fonte, IRPJ, descricaoReceitas)
+values
+('2024-01-15', 50000000.00, 'Patroc�nios', 1000000.00, 'Receita proveniente de contratos de patroc�nio para as sele��es brasileiras de futebol.'),
+('2024-03-01', 15000000.00, 'Cotas de TV', 300000.00, 'Receita proveniente da venda de direitos de transmiss�o das competi��es da CBF.'),
+('2024-06-10', 20000000.00, 'Direitos de Imagem', 400000.00, 'Receita obtida pela venda de direitos de imagem de jogadores e sele��es.'),
+('2024-09-05', 10000000.00, 'Taxas de Inscri��o', 200000.00, 'Receitas obtidas com taxas de inscri��o de clubes em competi��es nacionais.'),
+('2024-12-01', 8000000.00, 'Licenciamento de Marca', 160000.00, 'Receita obtida com o licenciamento de produtos da CBF (camisas, acess�rios, etc.).'),
+('2025-01-25', 12000000.00, 'Patroc�nios', 240000.00, 'Receita proveniente de novos contratos de patroc�nio com marcas esportivas.'),
+('2025-03-18', 25000000.00, 'Cotas de TV', 500000.00, 'Venda de cotas de transmiss�o para competi��es internacionais e amistosos.'),
+('2025-06-01', 15000000.00, 'Venda de Ingressos', 300000.00, 'Receita de venda de ingressos para amistosos da Sele��o Brasileira.'),
+('2025-08-15', 5000000.00, 'Patroc�nios', 100000.00, 'Contrato de patroc�nio com uma nova marca de bebidas para a Sele��o Feminina.'),
+('2025-10-20', 10000000.00, 'Taxas de Inscri��o', 200000.00, 'Taxas de inscri��o para competi��es regionais e torneios de base.'),
+('2025-12-15', 12000000.00, 'Patroc�nios', 240000.00, 'Renova��o do contrato de patroc�nio com marcas para as sele��es de base.'),
+('2026-01-10', 20000000.00, 'Direitos de Imagem', 400000.00, 'Venda de direitos de imagem para plataformas de streaming de esportes.'),
+('2026-02-28', 15000000.00, 'Cotas de TV', 300000.00, 'Venda de direitos de transmiss�o de competi��es de sele��es de base.'),
+('2026-04-05', 8000000.00, 'Licenciamento de Marca', 160000.00, 'Licenciamento de produtos oficiais da CBF.'),
+('2026-06-20', 18000000.00, 'Patroc�nios', 360000.00, 'Novo contrato de patroc�nio com um grande banco nacional.'),
+('2026-08-10', 5000000.00, 'Taxas de Inscri��o', 100000.00, 'Taxas recebidas de clubes participantes da Copa do Brasil.');
+
+insert into Transacoes(dataTransacoes, valorTransacoes, destinatarioTransacoes, remetenteTransacoes, descricaoTransacoes)
+values
+('2024-01-10', 5000000.00, 'Nike', 'CBF', 'Pagamento de patroc�nio de contrato anual com a Nike.'),
+('2024-02-15', 2000000.00, 'FIFA', 'CBF', 'Pagamento de taxa de participa��o em competi��es internacionais.'),
+('2024-05-30', 10000000.00, 'Globo', 'CBF', 'Pagamento referente aos direitos de transmiss�o de competi��es da CBF.'),
+('2024-08-20', 3000000.00, 'CBF', 'Corinthians', 'Transfer�ncia de parte da cota de TV para o clube Corinthians em compensa��o pela participa��o no Campeonato Brasileiro.'),
+('2024-10-25', 4000000.00, 'CBF', 'FIFA', 'Pagamento pela participa��o no Mundial de Clubes FIFA.'),
+('2025-01-15', 6000000.00, 'Adidas', 'CBF', 'Pagamento do contrato de fornecimento de material esportivo.'),
+('2025-02-25', 1500000.00, 'CBF', 'Flamengo', 'Pagamento da cota de TV para o clube Flamengo, conforme participa��o no Campeonato Brasileiro.'),
+('2025-04-10', 7000000.00, 'Patrocinador X', 'CBF', 'Pagamento de um novo contrato de patroc�nio com uma marca global.'),
+('2025-06-01', 5000000.00, 'CBF', 'CBF', 'Pagamento interno para a manuten��o de infraestrutura da sede da CBF.'),
+('2025-07-30', 2000000.00, 'CBF', 'CBF', 'Pagamento por transfer�ncia de valores a uma nova ag�ncia de marketing.'),
+('2025-09-15', 3000000.00, 'CBF', 'Bradesco', 'Transfer�ncia de valores relacionados ao patroc�nio financeiro com o Bradesco.'),
+('2025-10-05', 8000000.00, 'Patrocinador Y', 'CBF', 'Pagamento referente ao novo patroc�nio firmado com o patrocinador Y.'),
+('2025-11-25', 4000000.00, 'CBF', 'Clubes', 'Distribui��o das cotas de TV para os clubes participantes do Campeonato Brasileiro.'),
+('2025-12-15', 2000000.00, 'CBF', 'Ag�ncia Z', 'Pagamento � ag�ncia de publicidade para campanhas de marketing de competi��es internacionais.'),
+('2026-01-10', 3500000.00, 'CBF', 'SBT', 'Pagamento referente aos direitos de transmiss�o dos jogos da Sele��o Brasileira para o SBT.');
+
+insert into Despesas(dataDespesas, valorDespesas, destinatarioDespesas, remetenteDespesas, descricaoDespesas)
+values
+('2024-01-20', 1000000.00, 'Empresas de Transporte', 'CBF', 'Despesas com transporte para equipes durante as competi��es internacionais.'),
+('2024-02-10', 1500000.00, 'Empresas de Marketing', 'CBF', 'Despesas com marketing e publicidade em eventos promocionais da CBF.'),
+('2024-04-05', 2500000.00, 'Viagens e Hot�is', 'CBF', 'Despesas com a hospedagem e viagens de jogadores e comiss�o t�cnica para competi��es internacionais.'),
+('2024-06-15', 1200000.00, 'CBF', 'Ag�ncias de Publicidade', 'Despesas com campanhas publicit�rias para eventos da sele��o.'),
+('2024-08-30', 500000.00, 'Servi�os de Tecnologia', 'CBF', 'Despesas com manuten��o de plataformas de transmiss�o online e an�lise de dados.'),
+('2025-01-25', 2000000.00, 'Empresas de Transporte', 'CBF', 'Despesas com log�stica de transporte para a Copa Am�rica.'),
+('2025-03-10', 1000000.00, 'Servi�os de Catering', 'CBF', 'Despesas com alimenta��o durante as competi��es da Sele��o Brasileira.'),
+('2025-04-18', 1500000.00, 'Ag�ncia de Marketing', 'CBF', 'Despesas com campanhas publicit�rias da Copa do Mundo.'),
+('2025-06-05', 2000000.00, 'Ag�ncias de Publicidade', 'CBF', 'Pagamento de taxas publicit�rias durante a Copa do Brasil.'),
+('2025-07-22', 3000000.00, 'Empresas de Transporte', 'CBF', 'Despesas com transporte durante amistosos internacionais.'),
+('2025-08-10', 4000000.00, 'Viagens e Hot�is', 'CBF', 'Despesas com hospedagem da sele��o em eventos internacionais.'),
+('2025-09-02', 500000.00, 'Consultoria de TI', 'CBF', 'Despesas com consultoria especializada em TI para eventos internacionais.'),
+('2025-11-18', 1000000.00, 'Servi�os de Comunica��o', 'CBF', 'Despesas com assessoria de imprensa e comunica��o durante eventos.'),
+('2025-12-12', 2500000.00, 'Viagens e Hot�is', 'CBF', 'Despesas com viagens e hospedagem para a Copa Am�rica.'),
+('2026-01-01', 1500000.00, 'Consultoria de Marketing', 'CBF', 'Pagamento de consultoria especializada para novos contratos de patroc�nio.');
+
+insert into ContratosFinanceiros(inicioDeContrato, encerramentoDeContrato, associados, descricaoContratos)
+values
+('2024-01-01', '2026-12-31', 'Nike', 'Contrato de patroc�nio com a Nike para todas as sele��es da CBF.'),
+('2024-03-01', '2028-03-01', 'Globo', 'Contrato de transmiss�o de jogos da Sele��o Brasileira e Campeonato Brasileiro.'),
+('2024-06-01', '2026-06-01', 'FIFA', 'Contrato de participa��o da CBF nas competi��es internacionais organizadas pela FIFA.'),
+('2024-09-01', '2027-09-01', 'Banco do Brasil', 'Contrato de patroc�nio com o Banco do Brasil para a sele��o brasileira.'),
+('2025-01-01', '2028-01-01', 'Adidas', 'Contrato de fornecimento de material esportivo com a Adidas para todas as sele��es e eventos da CBF.'),
+('2025-02-01', '2028-02-01', 'Visa', 'Contrato de patroc�nio com a Visa para competi��es e eventos nacionais.'),
+('2025-03-15', '2027-03-15', 'Caixa Econ�mica Federal', 'Contrato de patroc�nio financeiro para sele��es e eventos da CBF.'),
+('2025-04-20', '2027-04-20', 'Emirates', 'Contrato de patroc�nio com a Emirates para viagens internacionais das sele��es.'),
+('2025-06-30', '2027-06-30', 'Adidas', 'Contrato de fornecimento de novos uniformes e equipamentos para sele��es.'),
+('2025-07-01', '2028-07-01', 'Ita�', 'Contrato de patroc�nio com o Ita� para eventos e competi��es da CBF.'),
+('2025-08-01', '2028-08-01', 'Mastercard', 'Contrato de patroc�nio e fornecimento de cart�es de cr�dito para atletas da sele��o brasileira.'),
+('2025-09-01', '2026-09-01', 'BMG', 'Contrato de patroc�nio com o Banco BMG para eventos de futebol de base.'),
+('2025-10-10', '2028-10-10', 'FIFA', 'Contrato de realiza��o de eventos internacionais com a FIFA.'),
+('2026-01-01', '2029-01-01', 'Coca-Cola', 'Contrato de patroc�nio global com a Coca-Cola para todas as sele��es.'),
+('2026-03-01', '2029-03-01', 'Gillette', 'Contrato de patroc�nio exclusivo com a Gillette para eventos da CBF.');
+ 
+create table Federacoes ( 
+	idFederacao int identity ( 1,1) primary key,
+	nome_federacao varchar (60),
+	sigla_federacao varchar (60),
+	estado_federacao varchar(60)
+
+);
+
+create table Clubes(
+	idClube int identity (1,1) primary key,
+	nome_clube varchar (60),
+	anoFundacao int,
+	estado varchar(60),
+	escudo IMAGE,
+	idFederacao int, 
+	constraint fk_clubes_federacoes foreign key (idFederacao) references Federacoes (idFederacao) 
+
+);
+
+create table Atletas( 
+	IdAtleta int identity (1,1) primary key,
+	nome varchar (60),
+	dataNascimento date,
+	apelido varchar(60),
+	numeracao int
+
+);
+
+create table Arbitros(
+	IdArbitro int identity (1,1) primary key, 
+	nome varchar(60),
+	idFederacao int, 
+	constraint fk_arbitros_federacoes foreign key (idFederacao) references Federacoes (idFederacao)
+);
+
+create table ContratosAtletas(
+	IdContratoAtleta int identity (1,1)primary key,
+	DataInicio date,
+	DataFim date,
+	TipoContrato varchar(60),
+	ativo bit,
+	idClube int, 
+	idAtleta int,
+	constraint fk_contratos_clubes foreign key (idClube) references Clubes (idClube),
+	constraint fk_contratos_atletas foreign key (idAtleta) references Atletas (idAtleta)   
+);
+
+go 
+
+create trigger atualizaca_ContratosAtletas
+on ContratosAtletas
+after insert 
+as
+begin
+	declare
+	@idAtleta int,
+	@idContrato int
+
+	select @IdAtleta = idAtleta,
+	@idContrato = idContratoAtleta from inserted 
+
+	update ContratosAtletas set ativo = 0 where idAtleta = @idAtleta and
+	idContratoAtleta <> @idContrato
+end
+
+go
+
+insert into Federacoes (nome_federacao, sigla_federacao, estado_federacao)
+values 
+('Federa��o de Futebol do Estado do Rio de Janeiro', 'FFERJ', 'Rio de Janeiro'),
+('Federa��o Paulista de Futebol', 'FPF', 'S�o Paulo'),
+('Federa��o Cearense de Futebool', 'FCF', 'Cear�'),
+('Federa��o Ga�cha de Futebol', 'FGF', 'Rio Grande do Sul'),
+('Federa��o Bahiana de Futebol', 'FBF', 'Bahia'),
+('Federa��o Mineira de Futebol', 'FMF', 'Minas Gerais'),
+('Federa��o Paranaense de Futebol', 'FPF', 'Paran�'),
+('Federa��o Catarinense de Futebol', 'FCF', 'Santa Catarina'),
+('Federa��o Goiana de Futebol', 'FGF', 'Goi�s'),
+('Federa��o Mato-Grossense de Futebol', 'FMF', 'Mato Grosso'),
+('Federa��o Pernambucana de Futebol', 'FPF', 'Pernambuco'),
+('Federa��o Amazonense de Futebol', 'FAF', 'Amazonas'),
+('Federa��o Paraense de Futebol', 'FPF', 'Par�'),
+('Federa��o Alagoana de Futebol', 'FAF', 'Alagoas'),
+('Federa��o Maranhense de Futebol', 'FMF', 'Maranh�o'),
+('Federa��o Norte-Rio-Grandense de Futebol', 'FNF', 'Rio Grande do Norte')
+;
+
+insert into Clubes (nome_clube, anoFundacao, estado, escudo, idFederacao) 
+values
+('Botafogo', 1904, 'Rio Janeiro', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 1),
+('Palmeiras', 1914, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Flamengo', 1895, 'Rio de Janeiro', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 1),
+('Fortaleza', 1918, 'Cear�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 3),
+('Internacional', 1909, 'Rio Grande do Sul', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 4),
+('S�o Paulo', 1930, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Corinthians', 1910, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Bahia', 1931, 'Bahia', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 5),
+('Cruzeiro', 1921, 'Minas Gerais', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 6),
+('Vasco da Gama', 1898, 'Rio de Janeiro', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 1),
+('EC Vit�ria', 1899, 'Bahia', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 5),
+('Atl�tico-MG', 1908, 'Minas Gerais', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 6),
+('Fluminense', 1902, 'Rio de Janeiro', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 1),
+('Gr�mio', 1903, 'Rio Grande do Sul', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 4),
+('Juventude', 1913, 'Rio Grande do Sul', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 4),
+('Bragantino', 1928, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),  
+('Athletico-PR', 1924, 'Paran�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 7),
+('Crici�ma', 1947, 'Santa Catarina', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 8),
+('Atl�tico-GO', 1937, 'Goi�s', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 9),
+('Cuiab�', 2001, 'Mato Grosso', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 10),
+('Santos', 1912, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Goi�s', 1943, 'Goi�s', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 9),
+('Coritiba', 1909, 'Paran�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 7),
+('Am�rica-MG', 1912, 'Minas Gerais', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 6),
+('Mirassol', 1925, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Sport Recife', 1905, 'Pernambuco', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 11),
+('Cear� SC', 1914, 'Cear�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 3),
+('Novorizontino', 2010, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Oper�rio', 1912, 'Paran�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 7),
+('Vila Nova', 1943, 'Goi�s', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 9),
+('Ava�', 1923, 'Santa Catarina', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 8),
+('Amazonas FC', 2019, 'Amazonas', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 12),
+('Paysandu', 1914, 'Par�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 13),
+('Botafogo-SP', 1918, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Chapecoense', 1973, 'Santa Catarina', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 8),
+('CRB', 1912, 'Alagoas', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 14),
+('Ponte Preta', 1900, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Ituano', 1947, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Brusque', 1987, 'Santa Catarina', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 8),
+('Guarani', 1911, 'S�o Paulo', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 2),
+('Sampaio Corr�a', 1923, 'Maranh�o', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 15),
+('Tombense', 1914, 'Minas Gerais', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 6),
+('Londrina', 1956, 'Paran�', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 7),
+('ABC', 1915, 'Rio Grande do Norte', 'https://www.gstatic.com/onebox/sports/logos/crest_48dp.png', 16)
+;
+
+insert into Atletas (nome, dataNascimento, apelido, numeracao)
+values 
+('C�ssio Roberto Ramos', '1987-06-06', 'C�ssio', 1),
+('Leonardo de Arag�o Carvalho', '2002-04-19', 'L�o Arag�o', 41),
+('William de Asevedo Furtado', '1995-04-03', 'William', 12),
+('Fabr�cio Bruno Soares de Faria Junior', '1996-02-12', 'Fabr�cio Bruno', 15),
+('Jo�o Marcelo Messias Ferreira', '2000-06-13', 'Jo�o Marcelo', 43),
+('Marlon Rodrigues Xavier', '1997-05-20', 'Marlon', 3),
+('Kaiki Bruno da Silva', '2003-03-08', 'Kaiki', 6),
+('Lucas Daniel Romero', '1994-04-18', 'Lucas Romero', 29),
+('Matheus Henrique de Souza', '1997-12-19', 'Matheus Henrique', 8),
+('Matheus Fellipe Costa Pereira', '1998-05-05', 'Matheus Pereira', 10),
+('Eduardo Pereira Rodrigues', '1992-01-07', 'Dudu', 7),
+('Gabriel Barbosa Almeida', '1996-08-30', 'Gabi', 9),
+('Kaio Jorge Pinto Ramos', '2002-01-24', 'Kaio Jorge', 19)
+;
+insert into Atletas (nome, dataNascimento, apelido)
+values 
+('Fernando Diniz Silva', '1974-03-27', 'Fernando Diniz'),
+('Eduardo Maciel de Barros', '1985-03-08', 'Eduardo Barros')
+;
+
+insert into Arbitros (nome, idFederacao)
+values
+('Anderson Daronco', 4),
+('Nathan Igor Sampaio Bezerra', 14),
+('Bruno Arleu de Ara�jo', 1),
+('Rafael Traci', 8),
+('Raphael Claus', 2),
+('Guilherme Dias Camilo', 6),
+('Bruno Raphael Pires', 9),
+('Bruno Boschilia', 7),
+('Alessandro Rocha Matos', 5),
+('Rodrigo Henrique Correia', 1),
+('B�rbara Roberta da Costa Loiola', 13),
+('Igor Junio Benevenuto de Oliveira', 6),
+('Jos� Claudio Rocha Filho', 2),
+('Rodrigo D''Alonso Ferreira', 8),
+('Rodrigo Guarizo Ferreira do Amaral', 2)
+;
+
+insert into ContratosAtletas (DataInicio, DataFim, TipoContrato, ativo, idClube, idAtleta)
+values 
+('2024-07-10', '2026-12-31', 'Contrato Definitivo', 1, 9, 1),
+('2023-07-10', '2026-12-31', 'Contrato Definitivo', 1, 9, 2),
+('2023-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 3),
+('2025-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 4),
+('2024-07-10', '2026-12-31', 'Contrato Definitivo', 1, 9, 5),
+('2023-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 6),
+('2023-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 7),
+('2024-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 8),
+('2024-07-10', '2026-12-31', 'Contrato Definitivo', 1, 9, 9),
+('2024-07-10', '2026-12-31', 'Contrato Definitivo', 1, 9, 10),
+('2025-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 11),
+('2025-01-01', '2026-12-31', 'Contrato Definitivo', 1, 9, 12),
+('2024-07-10', '2026-12-31', 'Contrato Definitivo', 1, 9, 13),
+('2024-09-24', '2026-12-31', 'Contrato Treinador/Assistente T�cnico', 1, 9, 14),
+('2024-09-24', '2026-12-31', 'Contrato Treinador/Assistente T�cnico', 1, 9, 15)
+;
+
+create table brasileirao_serieA_2024 (
+	idClube int,
+	pontos as ((vitorias*3) + empates), 
+	jogos int,
+	vitorias int,
+	empates int,
+	derrotas int,
+	golsPro int, 
+	golsSofridos int,
+	saldoGols as (golsPro - golsSofridos),
+	constraint fk_brasileiraoSerieA2024_clubes foreign key (idClube) references Clubes(idClube)
+);
+
+create table brasileirao_serieA_2023 (
+	idClube int,
+	pontos int, 
+	jogos int,
+	vitorias int,
+	empates int,
+	derrotas int,
+	golsPro int, 
+	golsSofridos int,
+	saldoGols as (golsPro - golsSofridos),
+	constraint fk_brasileiraoSerieA2023_clubes foreign key (idClube) references Clubes(idClube)
+);
+
+create table brasileirao_serieB_2024 (
+	idClube int,
+	pontos int, 
+	jogos int,
+	vitorias int,
+	empates int,
+	derrotas int,
+	golsPro int, 
+	golsSofridos int,
+	saldoGols as (golsPro - golsSofridos),
+	constraint fk_brasileiraoSerieB2024_clubes foreign key (idClube) references Clubes(idClube)
+);
+
+create table brasileirao_serieB_2023 (
+	idClube int,
+	pontos int, 
+	jogos int,
+	vitorias int,
+	empates int,
+	derrotas int,
+	golsPro int, 
+	golsSofridos int,
+	saldoGols as (golsPro - golsSofridos),
+	constraint fk_brasileiraoSerieB2023_clubes foreign key (idClube) references Clubes(idClube)
+);
+
+insert into brasileirao_serieA_2024 (idClube, jogos, vitorias, empates, derrotas, golsPro, golsSofridos)
+values 
+(1, 36, 21, 10, 5, 56, 28),
+(2, 36, 21, 7, 8, 58, 31),
+(3, 36, 19, 9, 8, 56, 40),
+(5, 36, 18, 11, 7, 53, 32),
+(4, 36, 18, 11, 7, 49, 36),
+(6, 36, 17, 8, 11, 51, 39),
+(8, 36, 14, 8, 14, 47, 46),
+(7, 36, 13, 11, 12, 48, 45),
+(9, 36, 13, 10, 13, 41, 39),
+(11, 36, 13, 6, 17, 42, 49),
+(14, 36, 12, 8, 16, 43, 46),
+(10, 36, 12, 8, 16, 39, 55),
+(12, 36, 10, 14, 12, 46, 52),
+(17, 36, 11, 9, 16, 39, 43),
+(15, 36, 10, 12, 16, 31, 39),
+(13, 36, 10, 10, 16, 31, 39),
+(18, 36, 9, 11, 16, 41, 53),
+(16, 36, 8, 14, 14, 37, 46),
+(20, 36, 6, 12, 18, 28, 46),
+(19, 36, 6, 9, 21, 26, 55);
+
+INSERT INTO brasileirao_serieA_2023 (idClube, pontos, jogos, vitorias, empates, derrotas, golsPro, golsSofridos) 
+VALUES
+(2, 70, 38, 20, 10, 8, 58, 32),
+(14, 68, 38, 19, 11, 8, 55, 40),
+(12, 66, 38, 19, 9, 10, 51, 34),
+(3, 66, 38, 19, 9, 10, 60, 45),
+(1, 64, 38, 18, 10, 10, 54, 38),
+(16, 62, 38, 17, 11, 10, 50, 36),
+(13, 56, 38, 15, 11, 12, 48, 42),
+(17, 56, 38, 15, 11, 12, 45, 41),
+(5, 55, 38, 15, 10, 13, 42, 39),
+(4, 54, 38, 14, 12, 12, 40, 37),
+(6, 53, 38, 14, 11, 13, 44, 41),
+(20, 51, 38, 13, 12, 13, 38, 40),
+(7, 50, 38, 13, 11, 14, 39, 42),
+(9, 47, 38, 12, 11, 15, 36, 39),
+(10, 45, 38, 12, 9, 17, 34, 45),
+(8, 44, 38, 11, 11, 16, 37, 46),
+(21, 43, 38, 11, 10, 17, 35, 50),
+(22, 38, 38, 10, 8, 20, 31, 52),
+(23, 30, 38, 7, 9, 22, 29, 60),
+(24, 24, 38, 5, 9, 24, 28, 65);
+
+INSERT INTO brasileirao_serieB_2024 (idClube, pontos, jogos, vitorias, empates, derrotas, golsPro, golsSofridos) 
+VALUES
+(21, 68, 38, 20, 8, 10, 57, 32),
+(25, 67, 38, 19, 10, 9, 42, 26),
+(26, 66, 38, 19, 9, 10, 57, 37),
+(27, 64, 38, 19, 7, 12, 59, 41),
+(28, 64, 38, 18, 10, 10, 43, 31),
+(22, 63, 38, 18, 9, 11, 56, 32),
+(29, 58, 38, 16, 10, 12, 34, 32),
+(24, 58, 38, 15, 13, 10, 50, 35),
+(30, 55, 38, 16, 7, 15, 42, 54),
+(31, 53, 38, 14, 11, 13, 34, 32),
+(32, 52, 38, 14, 10, 14, 31, 37),
+(23, 50, 38, 14, 8, 16, 41, 44),
+(33, 50, 38, 12, 14, 12, 41, 43),
+(34, 45, 38, 11, 12, 15, 36, 51),
+(35, 44, 38, 11, 11, 16, 34, 45),
+(36, 43, 38, 11, 10, 17, 38, 45),
+(37, 38, 38, 10, 8, 20, 37, 55),
+(38, 37, 38, 11, 4, 23, 43, 63),
+(39, 36, 38, 8, 12, 18, 24, 44),
+(40, 33, 38, 8, 9, 21, 33, 53);
+
+INSERT INTO brasileirao_serieB_2023 (idClube, pontos, jogos, vitorias, empates, derrotas, golsPro, golsSofridos) 
+VALUES
+(11, 72, 38, 22, 6, 10, 50, 31),
+(15, 65, 38, 18, 11, 9, 42, 31),
+(18, 64, 38, 19, 7, 12, 45, 33),
+(19, 64, 38, 17, 13, 8, 56, 45),
+(28, 63, 38, 19, 6, 13, 48, 30),
+(25, 63, 38, 18, 9, 11, 42, 31),
+(26, 63, 38, 17, 12, 9, 59, 40),
+(30, 61, 38, 17, 10, 11, 49, 30),
+(36, 57, 38, 16, 9, 13, 45, 39),
+(40, 57, 38, 15, 12, 11, 42, 33),
+(27, 50, 38, 13, 11, 14, 40, 45),
+(34, 47, 38, 12, 11, 15, 25, 42),
+(31, 44, 38, 10, 14, 14, 31, 48),
+(38, 42, 38, 9, 15, 14, 33, 38),
+(37, 42, 38, 9, 15, 14, 24, 35),
+(35, 40, 38, 9, 13, 16, 38, 43),
+(41, 39, 38, 8, 15, 15, 31, 43),
+(42, 37, 38, 9, 10, 19, 37, 50),
+(43, 31, 38, 7, 10, 21, 31, 58),
+(44, 28, 38, 5, 13, 20, 28, 51);
+
+create table Partidas (
+	idPartida int identity(1, 1) primary key,
+	golsMandante int,
+	golsVisitante int,
+	realizacao date
+);
+
+create table Confrontos (
+	idClube int,
+	idPartida int,
+	mandante bit, 
+	constraint fk_clube_confronto foreign key (idClube) references Clubes(idClube),
+	constraint fk_partida_confronto foreign key (idPartida) references Partidas(idPartida)
+);
+
+insert into Partidas (golsMandante, golsVisitante, realizacao)
+values 
+(3, 0, '2024-12-03'),
+(2, 0, '2024-12-04'),
+(1, 1, '2024-12-04'),
+(1, 2, '2024-12-04'),
+(0, 3, '2024-12-04'),
+(3, 1, '2024-12-04'),
+(0, 1, '2024-12-04'),
+(1, 2, '2024-12-04'),
+(1, 2, '2024-12-05'),
+(1, 0, '2024-12-05'),
+
+(5, 1, '2024-12-08'),
+(2, 0, '2024-12-08'),
+(0, 1, '2024-12-08'),
+(3, 0, '2024-12-08'),
+(1, 2, '2024-12-08'),
+(1, 0, '2024-12-08'),
+(2, 1, '2024-12-08'),
+(0, 3, '2024-12-08'),
+(0, 1, '2024-12-08'),
+(2, 2, '2024-12-08');
+
+go
+
+create trigger atualizacao_tabela
+on Confrontos
+after insert
+as
+begin 
+    declare
+        @golsMandante int,
+        @golsVisitante int,
+        @idPartida int,
+		@mandante bit,
+		@idClube int
+
+    select @mandante = mandante, @idClube = idClube, @idPartida = idPartida from inserted
+	select @golsMandante = golsMandante, @golsVisitante = golsVisitante from Partidas where idPartida = @idPartida
+	
+    update brasileirao_serieA_2024
+    set 
+		jogos = jogos + 1,
+        golsPro = golsPro + 
+            case 
+                when @mandante = 1 then @golsMandante 
+                else @golsVisitante 
+            end,
+        golsSofridos = golsSofridos + 
+            case 
+                when @mandante = 1 then @golsVisitante 
+                else @golsMandante 
+            end,
+        vitorias = vitorias + 
+            case 
+                when (@mandante = 1 and @golsMandante > @golsVisitante) or (@mandante = 0 and @golsVisitante > @golsMandante) then 1
+                else 0
+            end,
+        derrotas = derrotas + 
+            case 
+                when (@mandante = 1 and @golsMandante < @golsVisitante) or (@mandante = 0 and @golsVisitante < @golsMandante) then 1
+                else 0
+            end,
+        empates = empates + 
+            case 
+                when @golsMandante = @golsVisitante then 1
+                else 0
+            end
+
+	where idClube = @idClube
+end
+
+go
+
+insert into Confrontos (idClube, idPartida, mandante)
+values (7, 1, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (8, 1, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (10, 2, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (12, 2, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (11, 3, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (14, 3, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (6, 4, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (15, 4, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (18, 5, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (3, 5, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (19, 6, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (4, 6, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (5, 7, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (1, 7, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (9, 8, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (2, 8, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (17, 9, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (16, 9, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (13, 10, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (20, 10, 0);
+
+insert into Confrontos (idClube, idPartida, mandante)
+values (16, 11, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (18, 11, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (8, 12, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (19, 12, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (15, 13, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (9, 13, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (4, 14, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (5, 14, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (20, 15, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (10, 15, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (12, 16, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (17, 16, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (1, 17, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (6, 17, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (14, 18, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (7, 18, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (2, 19, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (13, 19, 0);
+insert into Confrontos (idClube, idPartida, mandante)
+values (3, 20, 1);
+insert into Confrontos (idClube, idPartida, mandante)
+values (11, 20, 0);
+
+select * from Federacoes;
+select * from Clubes;
+select * from Atletas;
+select * from Arbitros;
+select * from ContratosAtletas;
+
+insert into ContratosAtletas (TipoContrato, idClube, idAtleta)
+values ('Rescis�o', 9, 14)
+insert into ContratosAtletas (TipoContrato, idClube, idAtleta)
+values ('Rescis�o', 9, 15)
+insert into ContratosAtletas (TipoContrato, idClube, idAtleta)
+values ('Contrato Definitivo', 7, 1);
+
+select a.nome as Atleta, 
+       cl.nome_clube as [Clube respons�vel], 
+	   con.TipoContrato as [Tipo de contrato], 
+	   con.ativo as [Status] 
+from ContratosAtletas con 
+     inner join Clubes cl 
+	 on cl.idCLube = con.idClube
+	 inner join Atletas a
+	 on a.idAtleta = con.idAtleta;
+
+select * from Clubes;
+select * from Partidas;
+select * from Confrontos;
+
+select cl.nome_clube as [Classifica��o], 
+	   brA24.pontos as [P], 
+	   brA24.jogos as [J],
+	   brA24.vitorias as [V],
+	   brA24.empates as [E],
+	   brA24.derrotas as [D],
+	   brA24.golsPro as [GP],
+	   brA24.golsSofridos as [GC],
+	   brA24.saldoGols as [SG]
+from brasileirao_serieA_2024 brA24 
+     inner join Clubes cl 
+	 on cl.idClube=brA24.idClube
+order by brA24.pontos desc, brA24.vitorias desc, brA24.saldoGols DESC;
+
+/*
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+*/
+
+select cl.nome_clube as [Classifica��o], 
+	   brA23.pontos as [P],
+	   brA23.jogos as [J], 
+	   brA23.vitorias as [V],
+	   brA23.empates as [E],
+	   brA23.derrotas as [D],
+	   brA23.golsPro as [GP],
+	   brA23.golsSofridos as [GC],
+	   brA23.saldoGols as [SG]
+from brasileirao_serieA_2023 brA23
+     inner join Clubes cl 
+	 on cl.idClube=brA23.idClube
+order by brA23.pontos desc, brA23.vitorias desc, brA23.saldoGols DESC;
+
+select cl.nome_clube as [Classifica��o], 
+	   brB24.pontos as [P],
+	   brB24.jogos as [J], 
+	   brB24.vitorias as [V],
+	   brB24.empates as [E],
+	   brB24.derrotas as [D],
+	   brB24.golsPro as [GP],
+	   brB24.golsSofridos as [GC],
+	   brB24.saldoGols as [SG]
+from brasileirao_serieB_2024 brB24 
+     inner join Clubes cl 
+	 on cl.idClube=brB24.idClube
+order by brB24.pontos desc, brB24.vitorias desc, brB24.saldoGols DESC;
+
+select cl.nome_clube as [Classifica��o], 
+	   brB23.pontos as [P],
+	   brB23.jogos as [J], 
+	   brB23.vitorias as [V],
+	   brB23.empates as [E],
+	   brB23.derrotas as [D],
+	   brB23.golsPro as [GP],
+	   brB23.golsSofridos as [GC],
+	   brB23.saldoGols as [SG]
+from brasileirao_serieB_2023 brB23 
+     inner join Clubes cl 
+	 on cl.idClube=brB23.idClube
+order by brB23.pontos desc, brB23.vitorias desc, brB23.saldoGols DESC;
+select * from ContratosFinanceiros;
+select * from Despesas;
+select * from Dividas;
+select * from Receitas;
+select * from Transacoes;
